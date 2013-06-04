@@ -4,23 +4,25 @@ Generates an AMP Quick Start project with a properly wired Spring Application Co
 
 ## Usage
 
-From the shell, execute the following command:
+From the shell, execute *ONE OF* the following commands:
 
 ```bash
-
-# We've been experiencing trouble with Maven/Nexus in generating archetypes by this command,
-# but this should be the appropriate way to start.
-
-mvn archetype:generate                                                               \
-  -DarchetypeRepository=nexus.bericotechnologies.com/content/repositories/releases   \
-  -DarchetypeGroupId=amp.archetypes                                                  \
-  -DarchetypeArtifactId=quickstart                                                   \
-  -DarchetypeVersion=3.1.0                        
-  
-# Alternatively, use this command and choose the AMP Quickstart Archetype (we know this works):
-
+ 
+# This is just the standard mvn archetype:generate command, except it points to 
+# the nexus repository that contains the archetype (it's not in maven central)
 mvn archetype:generate  \
   -DarchetypeCatalog=http://nexus.bericotechnologies.com/content/repositories/releases/archetype-catalog.xml
+
+# Alternatively, you may want to use the latest snapshot of the archetype
+# instead of the "Release" version.  In that case, point to the snapshots
+# repository instead of release:
+mvn archetype:generate  \
+  -DarchetypeCatalog=http://nexus.bericotechnologies.com/content/repositories/snapshots/archetype-catalog.xml
 ```
 
-Follow the instructions displayed in the prompt.
+Follow the instructions displayed in the prompt.  Once complete, you can cd into your project's directory and run the start script:
+
+```bash
+# runs your program, compiling it first if needed
+sh bin/amp-start
+```
