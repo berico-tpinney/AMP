@@ -1,4 +1,11 @@
-language: java
+language: c
+
 before_install: 
-  - cd java
+  - cd dotnet
+  - sudo apt-get install mono-devel mono-gmcs nunit-console
+
+script: 
+  - xbuild ci.proj 
+
+ 
 
